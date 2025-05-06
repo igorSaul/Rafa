@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dark Romance</title>
+  <style>
+    /* Cor de fundo escuro com texturas sutis */
+    body {
+      background-color: #1e1e1e;
+      color: #fff;
+      font-family: 'Cinzel', serif;
+      margin: 0;
+      padding: 0;
+      background-image: url('background-texture.jpg'); /* Substitua com sua textura */
+      background-size: cover;
+      background-attachment: fixed;
+    }
+
+    /* Cabeçalho com fontes góticas */
+    h1, h2 {
+      text-align: center;
+      font-family: 'Cinzel', serif;
+      color: #d4af37; /* Cor dourada */
+      text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Container principal com padding e centralização */
+    .content {
+      padding: 50px;
+      text-align: center;
+      position: relative;
+    }
+
+    /* Estilo do botão de chamada para ação */
+    .cta-button {
+      background-color: #d4af37;
+      color: #1e1e1e;
+      padding: 15px 30px;
+      border: none;
+      font-size: 18px;
+      cursor: pointer;
+      text-transform: uppercase;
+      border-radius: 10px;
+      margin-top: 20px;
+    }
+
+    .cta-button:hover {
+      background-color: #b18a2f;
+    }
+
+    /* Roleta interativa */
+    .roulette-container {
+      margin-top: 40px;
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 20px;
+      border-radius: 10px;
+      display: inline-block;
+      width: 300px;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    .roulette-button {
+      background-color: #d4af37;
+      color: #1e1e1e;
+      padding: 15px;
+      border: none;
+      font-size: 20px;
+      border-radius: 10px;
+    }
+
+    .roulette-button:hover {
+      background-color: #b18a2f;
+    }
+
+    /* Efeito de contagem regressiva */
+    .countdown {
+      font-size: 24px;
+      color: #ff0000;
+      margin-top: 30px;
+    }
+
+    /* Imagem de modelo central */
+    .model-image {
+      width: 100%;
+      max-width: 600px;
+      margin: 20px auto;
+      display: block;
+      border-radius: 15px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Conteúdo Principal -->
+  <div class="content">
+    <h1>Bem-vindo ao Mundo do Dark Romance</h1>
+    <h2>Você está prestes a viver uma experiência única e inesquecível...</h2>
+    
+    <!-- Imagem da modelo -->
+    <img class="model-image" src="/mnt/data/eb81fe2f-5bc1-4366-88ca-2d15212defef.png" alt="Modelo Sensual">
+
+    <!-- Roleta -->
+    <div class="roulette-container">
+      <button class="roulette-button" onclick="startRoulette()">Gire a Roleta para Descobrir Seu Desconto</button>
+    </div>
+
+    <!-- Contagem regressiva -->
+    <div class="countdown" id="countdown">Oferta válida por: <span id="timer">10:00</span> minutos</div>
+
+    <!-- Botão de CTA -->
+    <button class="cta-button">Garanta seu conteúdo agora com [X% de desconto]</button>
+  </div>
+
+  <!-- Sons da Roleta -->
+  <audio id="roulette-sound" src="/mnt/data/941cc8e7a17d.mp3" preload="auto"></audio>
+  <audio id="win-sound" src="win-sound.mp3" preload="auto"></audio>
+
+  <script>
+    // Função para iniciar a roleta (exemplo simples)
+    function startRoulette() {
+      // Reproduzir o som de giro da roleta
+      document.getElementById('roulette-sound').play();
+
+      setTimeout(function() {
+        // Após o som de roleta, reproduz o som de vitória
+        document.getElementById('win-sound').play();
+
+        // Exibir um alerta para simular o resultado
+        alert("Você girou a roleta! Parabéns, você ganhou um desconto de 20%!");
+      }, 3000); // 3 segundos para a roleta "girar"
+    }
+
+    // Função de contagem regressiva (10 minutos)
+    var timer = 600; // 10 minutos em segundos
+    var countdownElement = document.getElementById('timer');
+    var countdownInterval = setInterval(function() {
+      var minutes = Math.floor(timer / 60);
+      var seconds = timer % 60;
+      countdownElement.textContent = minutes + ":" + (seconds < 10 ? "0" + seconds : seconds);
+      timer--;
+      if (timer < 0) {
+        clearInterval(countdownInterval);
+        countdownElement.textContent = "Oferta expirada!";
+      }
+    }, 1000);
+  </script>
+
+</body>
+</html>
